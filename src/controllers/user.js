@@ -41,7 +41,7 @@ const registerUser = async (req, res) => {
                 )
             }
         })
-    }
+}
 const verifyjwt = (req,res,next)=>{
 const token = req.headers["x-access-token"];
 console.log("token",token)
@@ -85,7 +85,6 @@ const loginUser = (req, res) => {
 
                     if(response){
                         const id = result[0].id;
-                        
                         const token = jwt.sign({id},"abcd",{
                             expiresIn:3000
                         })

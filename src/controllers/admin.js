@@ -117,6 +117,26 @@ const acceptingUser = (req, res) =>{
 })
 }
 
-module.exports = {registerAdmin,loginAdmin,gettingTempUser,acceptingUser}
+const rejectingUser = (req, res) =>{
+    const email=req.body.email;
+    db.query(
+            "DELETE FROM temporaryuser WHERE email=?",email
+                ,(err,result)=>{
+                    if(err){
+                        res.send({
+                            message:"error occured"
+                        })
+                    }else{
+                        res.send({
+                            message:"user have been successfully removed"
+                        })
+                    }
+                }
+            )
+}
+
+
+
+module.exports = {registerAdmin,loginAdmin,gettingTempUser,acceptingUser,rejectingUser}
 
 
